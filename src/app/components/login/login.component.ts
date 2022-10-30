@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {AuthenticationService} from "../../services/authentication.service";
-import {Router} from "@angular/router";
+import { Component } from '@angular/core';
+import { AuthenticationService } from "../../services/authentication.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -8,17 +8,26 @@ import {Router} from "@angular/router";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  constructor(private readonly authenticationService : AuthenticationService, private readonly router: Router) {}
+  readonly EMAIL_PLACEHOLDER = 'email';
+  readonly PASSWORD_PLACEHOLDER = 'password';
+  constructor(
+    private readonly authenticationService: AuthenticationService,
+    private readonly router: Router
+  ) {}
 
   async onSignUp(email:string, password:string): Promise<void> {
     await this.authenticationService.signUp(email, password).then(() => {
       this.navigateToHomePageIfPossible();
+    }).catch((error) => {
+      alert(error.code);
     });
   }
 
   async onSignIn(email:string, password:string): Promise<void> {
     await this.authenticationService.signIn(email, password).then(() => {
       this.navigateToHomePageIfPossible();
+    }).catch((error) => {
+      alert(error.code);
     });
   }
 

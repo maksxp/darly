@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
 import { Observable } from 'rxjs';
 import {AuthenticationService} from "../services/authentication.service";
-import {loadSecondaryEntryPointInfoForApfV14} from "@angular/compiler-cli/ngcc/src/utils";
 import {LOGIN_CONSTANTS} from "../constants/login.constants";
 
 @Injectable()
@@ -22,6 +21,5 @@ export class LoginGuard implements CanActivate {
       }
     });
   }
-
 }
 
