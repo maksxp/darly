@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {AngularFireAuth} from "@angular/fire/compat/auth";
-import {LOGIN_CONSTANTS} from "../constants/login.constants";
+import { AngularFireAuth } from "@angular/fire/compat/auth";
+import { LOGIN_CONSTANTS } from "../constants/login.constants";
 
 @Injectable()
 export class AuthenticationService {
@@ -14,7 +14,7 @@ export class AuthenticationService {
     this._isLoggedIn = isLoggedIn;
   }
 
-  constructor(private readonly angularFireAuth: AngularFireAuth) { }
+  constructor(private readonly angularFireAuth: AngularFireAuth) {}
 
   async signIn(email: string, password : string): Promise<void> {
     await this.angularFireAuth.signInWithEmailAndPassword(email,password)
@@ -32,7 +32,7 @@ export class AuthenticationService {
       })
   }
   logout(): void {
-    this.angularFireAuth.signOut();
+    this.angularFireAuth.signOut().finally();
     localStorage.removeItem(LOGIN_CONSTANTS.USER_UID);
   }
 }
